@@ -3,7 +3,8 @@ name: Prod Release PR
 on:
   push:
     branches:
-      - main
+      - release
+      - hotfix
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -31,7 +32,6 @@ jobs:
           publish: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create Release Pull Request to develop branch
         uses: repo-sync/pull-request@v2
